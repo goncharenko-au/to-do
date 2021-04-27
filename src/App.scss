@@ -1,0 +1,157 @@
+@font-face {
+  font-family: "icomoon";
+  src: url("./assets/fonts/icomoon.woff") format("woff"), url("./assets/fonts/icomoon.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+body {
+  height: 100vh;
+  background: linear-gradient(219.03deg, #f4c7ea 4.12%, #fde5ec 95.2%);
+  position: relative;
+  color: #fff;
+  &:before {
+    position: absolute;
+    content: "";
+    width: 1000px;
+    height: 1000px;
+    background: linear-gradient(136.32deg, rgba(255, 0, 46, 0) 16.32%, rgba(255, 216, 80, 0.69) 85.53%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    top: -700px;
+    left: 0;
+    filter: blur(470.273px);
+    z-index: -1;
+  }
+  &:after {
+    position: absolute;
+    content: "";
+    width: 600px;
+    height: 600px;
+    background: linear-gradient(142.97deg, rgba(0, 255, 133, 0.3) 17.43%, rgba(63, 239, 60, 0.22) 73.23%);
+    filter: blur(315.415px);
+    top: 16vh;
+    left: 0;
+  }
+}
+.container {
+  // height: 100vh;
+  max-width: 992px;
+  margin: 0 auto;
+  background-color: rosybrown;
+}
+
+.field {
+  margin-top: 20px;
+  &__inner {
+    padding: 20px;
+    background: linear-gradient(136.16deg, rgba(46, 9, 22, 0.97) 12.91%, rgba(32, 10, 43, 0.69) 87.68%);
+    // box-shadow: 22.0639px 20.3667px 76.375px rgba(31, 26, 51, 0.13);
+    // border-radius: 20px;
+  }
+  &__title {
+    text-align: center;
+    color: #ff5b79;
+  }
+  &__date {
+    text-align: center;
+    font-size: 12px;
+    margin-bottom: 30px;
+  }
+
+  &__header {
+    max-width: 90%;
+    border-radius: 5px;
+    margin: 0 auto 30px;
+  }
+  &__input {
+    z-index: 100;
+    padding: 10px;
+    width: 90%;
+    border-radius: 5px 0 0 5px;
+    border: none;
+
+    // width: calc(100% - 105px);
+  }
+  &__btn {
+    padding: 10px;
+    width: 100px;
+    width: 10%;
+    border-radius: 0 5px 5px 0;
+    border: none;
+    cursor: pointer;
+    background-color: #ff5b79;
+    color: #fff;
+  }
+  &__block {
+    max-width: 90%;
+    margin: 0 auto 10px;
+    background: linear-gradient(231.3deg, rgba(256, 256, 256, 0.2) 12.07%, rgba(256, 256, 256, 1) 61.45%);
+    padding: 10px 30px 10px 10px;
+    border-radius: 5px;
+
+    &-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    &-text {
+      max-width: 92%;
+      color: #ff5b79;
+      word-wrap: break-word;
+      line-height: 1;
+      &.done {
+        text-decoration: line-through;
+      }
+    }
+    &-buttons {
+      display: flex;
+      width: 40px;
+      height: 15px;
+      justify-content: space-between;
+    }
+    &-btn {
+      cursor: pointer;
+      position: relative;
+      &.btn-done {
+        &:before {
+          position: absolute;
+          content: "";
+          font-family: "icomoon";
+          content: "\e900";
+          top: 0;
+          left: 0;
+        }
+      }
+      &.btn-delete {
+        &:before {
+          position: absolute;
+          content: "";
+          font-family: "icomoon";
+          content: "\e901";
+          top: 0;
+          left: 0;
+        }
+      }
+    }
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
