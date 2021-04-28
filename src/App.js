@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import './App.scss';
 import { useDispatch, useSelector } from "react-redux";
 import Post from './components/Post';
@@ -8,20 +8,18 @@ function App() {
   const dispatch = useDispatch();
   const posts = useSelector(state => state.postReducer.posts);
 
-
   const [value, setValue] = React.useState("");
 
   const getPost = () => {
-    dispatch(addPost({ name: value, id: Math.round(Math.random() * 1000), done: false, delete: false }));
+    dispatch(addPost({ name: value, done: false }));
     setValue("");
-  }
+  };
 
   const newPost = (e) => {
     setValue(e.target.value);
   }
 
   const date = new Date();
-
 
   console.log(posts);
   return (
@@ -36,7 +34,7 @@ function App() {
             <button className="field__btn" onClick={() => getPost()}>Добавить</button>
           </div>
           {
-            posts.map(item => <Post key={Math.round(Math.random() * 1000)}>{item}</Post>)
+            posts.map((item, id) => <Post id={id} key={Math.round(Math.random() * 1000)}>{item}</Post>)
           }
         </div>
       </div>

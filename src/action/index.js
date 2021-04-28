@@ -5,9 +5,9 @@ const addPost = (value) => ({
 
 export default addPost;
 
-export const updateDone = (done) => ({
+export const updateDone = (data) => ({
     type: "UPDATE_DONE",
-    payload: done
+    payload: data
 })
 
 export const deletePost = (id) => ({
