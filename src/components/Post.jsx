@@ -7,19 +7,13 @@ import { deletePost } from './../action/index';
 
 export default function Post(props) {
     const dispatch = useDispatch();
-    const done = useSelector(state => state.postReducer.posts);
-    // const posts = useSelector(state => state.postReducer.posts);
-
 
     const changeDone = () => {
         dispatch(updateDone(props));
-        console.log("D")
     }
-
 
     const deleteMyPost = () => {
         dispatch(deletePost(props.id));
-        console.log("delete")
     };
 
     return (
@@ -29,6 +23,7 @@ export default function Post(props) {
                     {props.children.name}
                 </div>
                 <div className="field__block-buttons">
+                    {/* <span></span> */}
                     <ButtonDone className="field__block-btn btn-done"
                         onDone={changeDone}
                     />
@@ -36,8 +31,6 @@ export default function Post(props) {
                         onDelete={deleteMyPost}
                     />
                 </div>
-
-
             </div>
         </div >
     )
