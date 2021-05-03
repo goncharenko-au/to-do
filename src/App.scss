@@ -154,12 +154,14 @@ body {
     &-text {
       max-width: 92%;
       color: #ff5b79;
-
       word-wrap: break-word;
       line-height: 1;
       &.done {
         text-decoration: line-through;
       }
+    }
+    &-alttext {
+      margin-left: 5%;
     }
     &-buttons {
       display: flex;

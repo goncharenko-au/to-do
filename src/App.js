@@ -23,6 +23,15 @@ function App() {
 
   const date = new Date();
 
+  const getCurDate = () => {
+    let curDate = date.getDate();
+    if (curDate <= 9) {
+      return `0${curDate}`;
+    } else {
+      return curDate;
+    }
+  };
+
   const getCurMonth = () => {
     let month = date.getMonth();
     if (month <= 9) {
@@ -31,27 +40,26 @@ function App() {
       return month + 1;
     }
   };
-  const getCurDate = () => {
+
+  const getCurTime = () => {
     let hours = date.getHours();
     let minutes = date.getMinutes();
     let seconds = date.getSeconds();
     const curHours = hours <= 9 ? `0${hours}` : hours;
     const curMinutes = minutes <= 9 ? `0${minutes}` : minutes;
     const curSeconds = seconds <= 9 ? `0${seconds}` : seconds;
-    return `${curHours}:${curMinutes}:${curSeconds}`
-
+    return `${curHours}:${curMinutes}:${curSeconds}`;
   };
 
-  const currentDate = `${date.getDate()}.${getCurMonth()}.${date.getFullYear()}`;
-  const currentTime = getCurDate();
+  const currentDate = `${getCurDate()}.${getCurMonth()}.${date.getFullYear()}`;
+  const currentTime = getCurTime();
 
 
   const [time, setTime] = useState(currentTime);
 
   useEffect(() => {
-    setInterval(() => setTime(getCurDate()), 1000);
-  }, [setTime])
-
+    setInterval(() => setTime(getCurTime()), 1000);
+  }, [currentTime]);
 
   return (
     <div className="container">
@@ -73,9 +81,21 @@ function App() {
               onKeyDown={(e) => console.log(e)}
             >Добавить</button>
           </div>
-          {
-            posts.map((item, id) => <Post id={id} key={Math.round(Math.random() * 1000)}>{item}</Post>)
+          {posts.length > 0 ?
+            <div>
+              {
+                posts.map((item, id) => <Post id={id} key={`Math.round(Math.random() * 100000) ${item.name}`}>{item}</Post>)
+              }
+            </div>
+            :
+            <div className="field__block-alttext">Список дел пуст...</div>
+
           }
+
+
+          {/* {
+            posts.map((item, id) => <Post id={id} key={Math.round(Math.random() * 1000)}>{item}</Post>)
+          } */}
         </div>
       </div>
     </div >
