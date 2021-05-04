@@ -9,6 +9,9 @@ function App() {
   const posts = useSelector(state => state.postReducer.posts);
 
   const [value, setValue] = useState("");
+  const newPost = (e) => {
+    setValue(e.target.value);
+  };
 
   const getPost = () => {
     if (value) {
@@ -17,88 +20,63 @@ function App() {
     setValue("");
   };
 
-  const newPost = (e) => {
-    setValue(e.target.value);
-  };
-
   const date = new Date();
 
+  function addedZero(value, correction = 0) {
+    const resultValue = value + correction;
+    if (resultValue <= 9) {
+      return `0${resultValue}`;
+    } else {
+      return resultValue;
+    }
+  }
+
   const getCurDate = () => {
-    let curDate = date.getDate();
-    if (curDate <= 9) {
-      return `0${curDate}`;
-    } else {
-      return curDate;
-    }
+    let curDate = addedZero(date.getDate());
+    let curMonth = addedZero(date.getMonth(), 1);
+    return `${curDate}.${curMonth}.${date.getFullYear()}`;
   };
 
-  const getCurMonth = () => {
-    let month = date.getMonth();
-    if (month <= 9) {
-      return `0${month + 1}`;
-    } else {
-      return month + 1;
-    }
-  };
-
-  const getCurTime = () => {
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-    let seconds = date.getSeconds();
-    const curHours = hours <= 9 ? `0${hours}` : hours;
-    const curMinutes = minutes <= 9 ? `0${minutes}` : minutes;
-    const curSeconds = seconds <= 9 ? `0${seconds}` : seconds;
-    return `${curHours}:${curMinutes}:${curSeconds}`;
-  };
-
-  const currentDate = `${getCurDate()}.${getCurMonth()}.${date.getFullYear()}`;
-  const currentTime = getCurTime();
-
-
-  const [time, setTime] = useState(currentTime);
+  const [time, setTime] = useState(new Date().toLocaleTimeString());
 
   useEffect(() => {
-    setInterval(() => setTime(getCurTime()), 1000);
-  }, [currentTime]);
-
+    setInterval(() => setTime(new Date().toLocaleTimeString()), 1000);
+  }, [setTime]);
   return (
-    <div className="container">
-      <div className="field">
-        <div className="field__inner">
-          <h1 className="field__title">TODO list </h1>
-          <div className="field__wrap">
-            <div className="field__date">
-              {currentDate}</div>
-            <div className="field__time">
-              {currentTime}
+    <div className="wrapper">
+      <div className="container">
+        <div className="field">
+          <div className="field__inner">
+            <h1 className="field__title">TODO list </h1>
+            <div className="field__wrap">
+              <div className="field__date">
+                {getCurDate()}</div>
+              <div className="field__time">
+                {time}
+              </div>
             </div>
-          </div>
 
-          <div className="field__header">
-            <input className="field__input" value={value} onChange={newPost}
-              onKeyDown={(e) => e.code === "Enter" && value !== "" ? getPost() : null} />
-            <button className="field__btn" onClick={() => getPost()}
-              onKeyDown={(e) => console.log(e)}
-            >Добавить</button>
-          </div>
-          {posts.length > 0 ?
-            <div>
-              {
-                posts.map((item, id) => <Post id={id} key={`Math.round(Math.random() * 100000) ${item.name}`}>{item}</Post>)
-              }
+            <div className="field__header">
+              <input className="field__input" value={value} onChange={newPost}
+                onKeyDown={(e) => e.code === "Enter" && value !== "" ? getPost() : null} />
+              <button className="field__btn" onClick={() => getPost()}
+                onKeyDown={(e) => console.log(e)}
+              >Добавить</button>
             </div>
-            :
-            <div className="field__block-alttext">Список дел пуст...</div>
+            {posts.length > 0 ?
+              <div>
+                {
+                  posts.map((item, id) => <Post id={id} key={Math.round(Math.random() * 100000)}>{item}</Post>)
+                }
+              </div>
+              :
+              <div className="field__block-alttext">Список дел пуст...</div>
 
-          }
-
-
-          {/* {
-            posts.map((item, id) => <Post id={id} key={Math.round(Math.random() * 1000)}>{item}</Post>)
-          } */}
+            }
+          </div>
         </div>
-      </div>
-    </div >
+      </div >
+    </div>
   );
 }
 

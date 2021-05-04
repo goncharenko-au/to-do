@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateDone } from "../action";
 import ButtonDone from "./ButtonDone";
 import ButtonDelete from "./ButtonDelete";
@@ -15,15 +15,19 @@ export default function Post(props) {
     const deleteMyPost = () => {
         dispatch(deletePost(props.id));
     };
+    const { name, done } = props.children;
+
+
+    const timeOfPost = new Date().toLocaleTimeString();
 
     return (
         <div className="field__block">
             <div className="field__block-inner">
-                <div className={!props.children.done ? "field__block-text" : "field__block-text done"} >
-                    {props.children.name}
+                <div className={!done ? "field__block-text" : "field__block-text done"} >
+                    {name}
                 </div>
+                <span>{timeOfPost}</span>
                 <div className="field__block-buttons">
-                    {/* <span></span> */}
                     <ButtonDone className="field__block-btn btn-done"
                         onDone={changeDone}
                     />
