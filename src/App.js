@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import './App.scss';
 import { useDispatch, useSelector } from "react-redux";
+import './App.scss';
 import Post from './components/Post';
+import DateTodo from './components/Date';
 import addPost from './action';
 
-function App() {
+
+export default function App() {
   const dispatch = useDispatch();
   const posts = useSelector(state => state.postReducer.posts);
 
@@ -20,28 +22,11 @@ function App() {
     setValue("");
   };
 
-  const date = new Date();
-
-  function addedZero(value, correction = 0) {
-    const resultValue = value + correction;
-    if (resultValue <= 9) {
-      return `0${resultValue}`;
-    } else {
-      return resultValue;
-    }
-  }
-
-  const getCurDate = () => {
-    let curDate = addedZero(date.getDate());
-    let curMonth = addedZero(date.getMonth(), 1);
-    return `${curDate}.${curMonth}.${date.getFullYear()}`;
-  };
-
-  const [time, setTime] = useState(new Date().toLocaleTimeString());
-
   useEffect(() => {
-    setInterval(() => setTime(new Date().toLocaleTimeString()), 1000);
-  }, [setTime]);
+    localStorage.setItem("posts", JSON.stringify(posts));
+  }, [posts]);
+
+
   return (
     <div className="wrapper">
       <div className="container">
@@ -49,11 +34,7 @@ function App() {
           <div className="field__inner">
             <h1 className="field__title">TODO list </h1>
             <div className="field__wrap">
-              <div className="field__date">
-                {getCurDate()}</div>
-              <div className="field__time">
-                {time}
-              </div>
+              <DateTodo />
             </div>
 
             <div className="field__header">
@@ -71,13 +52,10 @@ function App() {
               </div>
               :
               <div className="field__block-alttext">Список дел пуст...</div>
-
             }
           </div>
         </div>
       </div >
     </div>
   );
-}
-
-export default App;
+};

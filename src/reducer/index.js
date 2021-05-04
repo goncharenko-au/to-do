@@ -1,10 +1,11 @@
 import { combineReducers } from "redux";
 
-
 const defaultState = {
-    posts: [],
-    post: {}
+    posts: JSON.parse(localStorage.getItem("posts"))
 };
+
+
+
 
 const ADD_POST = "ADD_POST",
     UPDATE_DONE = "UPDATE_DONE",

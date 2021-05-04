@@ -15,8 +15,7 @@
 *:after {
   box-sizing: border-box;
 }
-body {
-}
+
 .wrapper {
   padding-top: 20px;
   min-height: 100vh;
@@ -132,6 +131,15 @@ body {
     cursor: pointer;
     background-color: #ff5b79;
     color: #fff;
+    transition: color 0.3;
+    &:hover {
+      color: rgba(256, 256, 256, 0.7);
+      transition: color 0.3;
+    }
+    &:active {
+      color: rgba(256, 256, 256, 0.5);
+      transition: color 0.3;
+    }
     @media (max-width: 991px) {
       width: 20%;
       padding-right: 20px;
@@ -162,7 +170,20 @@ body {
       color: #ff5b79;
       word-wrap: break-word;
       line-height: 1;
+      @media (max-width: 991px) {
+        max-width: 90%;
+      }
+      @media (max-width: 767px) {
+        max-width: 84%;
+      }
+      @media (max-width: 450px) {
+        max-width: 82%;
+      }
+      @media (max-width: 374px) {
+        max-width: 78%;
+      }
       &.done {
+        color: rgba(255, 91, 121, 0.5);
         text-decoration: line-through;
       }
     }
@@ -182,7 +203,8 @@ body {
     &-btn {
       cursor: pointer;
       position: relative;
-      &.btn-done {
+      &.btn-done,
+      &.btn-done_check {
         &:before {
           position: absolute;
           content: "";
@@ -193,6 +215,9 @@ body {
           @media (max-width: 450px) {
             font-size: 12px;
           }
+        }
+        &_check {
+          color: rgba(256, 256, 256, 0.4);
         }
       }
       &.btn-delete {
@@ -208,15 +233,14 @@ body {
           }
         }
       }
+      &:hover {
+        color: rgba(256, 256, 256, 0.7);
+        transition: color 0.3;
+      }
+      &:active {
+        color: rgba(256, 256, 256, 0.5);
+        transition: color 0.3;
+      }
     }
   }
 }
-
-// @keyframes App-logo-spin {
-//   from {
-//     transform: rotate(0deg);
-//   }
-//   to {
-//     transform: rotate(360deg);
-//   }
-// }
