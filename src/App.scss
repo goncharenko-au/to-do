@@ -107,25 +107,29 @@
   &__input {
     z-index: 100;
     padding: 10px;
-    width: 90%;
+    width: 85%;
     border-radius: 5px 0 0 5px;
     border: none;
     @media (max-width: 991px) {
       width: 80%;
     }
+    @media (max-width: 767px) {
+      font-size: 15px;
+    }
     @media (max-width: 685px) {
-      width: 70%;
+      width: 65%;
     }
     @media (max-width: 430px) {
       width: 100%;
       border-radius: 5px;
       margin-bottom: 5px;
+      padding-top: 13px;
+      padding-bottom: 13px;
     }
   }
   &__btn {
     padding: 10px;
-    width: 100px;
-    width: 10%;
+    width: 15%;
     border-radius: 0 5px 5px 0;
     border: none;
     cursor: pointer;
@@ -145,12 +149,17 @@
       padding-right: 20px;
       padding-left: 20px;
     }
+    @media (max-width: 767px) {
+      font-size: 15px;
+    }
     @media (max-width: 685px) {
-      width: 30%;
+      width: 35%;
     }
     @media (max-width: 430px) {
       width: 100%;
       border-radius: 5px;
+      padding-top: 13px;
+      padding-bottom: 13px;
     }
   }
   &__block {
@@ -159,7 +168,12 @@
     background: linear-gradient(231.3deg, rgba(256, 256, 256, 0.2) 12.07%, rgba(256, 256, 256, 1) 61.45%);
     padding: 10px 30px 10px 10px;
     border-radius: 5px;
-
+    @media (max-width: 767px) {
+      padding-right: 20px;
+    }
+    @media (max-width: 767px) {
+      padding-right: 10px;
+    }
     &-inner {
       display: flex;
       justify-content: space-between;
@@ -192,17 +206,17 @@
     }
     &-buttons {
       display: flex;
-      width: 40px;
+      width: 50px;
       height: 15px;
       justify-content: space-between;
       @media (max-width: 450px) {
-        width: 32px;
-        height: 10px;
       }
     }
     &-btn {
       cursor: pointer;
       position: relative;
+      width: 16px;
+      height: 16px;
       &.btn-done,
       &.btn-done_check {
         &:before {
@@ -212,9 +226,6 @@
           content: "\e900";
           top: 0;
           left: 0;
-          @media (max-width: 450px) {
-            font-size: 12px;
-          }
         }
         &_check {
           color: rgba(256, 256, 256, 0.4);
@@ -228,9 +239,6 @@
           content: "\e901";
           top: 0;
           left: 0;
-          @media (max-width: 450px) {
-            font-size: 12px;
-          }
         }
       }
       &:hover {
