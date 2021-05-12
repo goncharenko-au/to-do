@@ -22,7 +22,8 @@ export default function DateTodo() {
 
     useEffect(() => {
         setInterval(() => setTime(new Date().toLocaleTimeString()), 1000);
-    }, [setTime]);
+    }, [time]);
+
     return (
         <>
             <div className="field__date">
