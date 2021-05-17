@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import './App.scss';
 import Post from './components/Post';
-import DateTodo from './components/Date';
 import Field from './components/Field';
-
+import Sidebar from './components/Sidebar';
+import './App.scss';
 
 export default function App() {
   const posts = useSelector(state => state.postReducer.posts);
@@ -19,9 +18,6 @@ export default function App() {
         <div className="field">
           <div className="field__inner">
             <h1 className="field__title">TODO list </h1>
-            <div className="field__wrap">
-              <DateTodo />
-            </div>
             <div className="field__header">
               <Field />
             </div>
@@ -36,7 +32,10 @@ export default function App() {
             }
           </div>
         </div>
+        <Sidebar />
+
       </div >
+
     </div>
   );
 };

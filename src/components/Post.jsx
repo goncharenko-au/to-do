@@ -18,7 +18,6 @@ export default function Post(props) {
     const deleteMyPost = () => {
         dispatch(deletePost(id));
     };
-
     return (
         <div className="field__block">
             <div className="field__block-inner">

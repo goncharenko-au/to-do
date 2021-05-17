@@ -1,36 +1,64 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 export default function DateTodo() {
-    const date = new Date();
-
-    function addedZero(value, correction = 0) {
-        const resultValue = value + correction;
-        if (resultValue <= 9) {
-            return `0${resultValue}`;
-        } else {
-            return resultValue;
-        }
+    const convertDate = {
+        "1": "января",
+        "2": "февраля",
+        "3": "марта",
+        "4": "апреля",
+        "5": "мая",
+        "6": "июня",
+        "7": "июля",
+        "8": "августа",
+        "9": "сентября",
+        "10": "октября",
+        "11": "ноября",
+        "12": "декабря"
+    }
+    const convertDay = {
+        "0": "воскресенье",
+        "1": "понедельник",
+        "2": "вторник",
+        "3": "среда",
+        "4": "четверг",
+        "5": "пятница",
+        "6": "суббота"
     }
 
-    const getCurDate = () => {
-        let curDate = addedZero(date.getDate());
-        let curMonth = addedZero(date.getMonth(), 1);
-        return `${curDate}.${curMonth}.${date.getFullYear()}`;
-    };
+    function getCurrentDate() {
+        let date = new Date().getDate();
+        if (date <= 9) {
+            return `0${date}`
+        } else {
+            return date;
+        }
+    }
+    function getCurrentMonth() {
+        let month = (new Date().getMonth()) + 1;
+        for (let key in convertDate) {
+            if (month == key) {
+                return convertDate[key];
+            }
+        };
+    }
+    function getCurrentDay() {
+        let day = new Date().getDay();
+        for (let key in convertDay) {
+            if (day == key) {
+                return convertDay[key];
+            }
+        };
+    }
 
-    const [time, setTime] = useState(new Date().toLocaleTimeString());
+    console.log("render")
 
-    useEffect(() => {
-        setInterval(() => setTime(new Date().toLocaleTimeString()), 1000);
-    }, [time]);
 
     return (
-        <>
+        <div>
             <div className="field__date">
-                {getCurDate()}</div>
-            <div className="field__time">
-                {time}
+                {`${getCurrentDate()} ${getCurrentMonth()}, ${getCurrentDay()}`}
             </div>
-        </>
+
+        </div>
     )
 }
