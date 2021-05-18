@@ -50,9 +50,6 @@ export default function DateTodo() {
         };
     }
 
-    console.log("render")
-
-
     return (
         <div>
             <div className="field__date">
